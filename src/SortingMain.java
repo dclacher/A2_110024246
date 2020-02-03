@@ -5,20 +5,112 @@ import sorting.*;
 public class SortingMain {
 
 	public static void main(String[] args) {
-		System.out.println("[MERGESORT 1] Average elapsed time for 100 executions: " + executeMergesort());
-		System.out.println("[MERGESORT 2] Average elapsed time for 100 executions: " + executeMergesort());
-		System.out.println("[QUICKSORT] Average elapsed time for 100 executions: " + executeQuicksort());
-		System.out.println("[HEAPSORT] Average elapsed time for 100 executions: " + executeHeapsort());
-		System.out.println(
-				"[DUAL-PIVOT QUICKSORT] Average elapsed time for 100 executions: " + executeDualPivotQuicksort());
+		
+		/*
+		 * Task 2: sortingType: 
+		 * 1 = Merge sort, 2 = Quick sort, 3 = Heap sort, 4 = Dual-Pivot Quick sort (Java 8)
+		 */
+		System.out.println("[MERGESORT 1] Numbers: " + executeSortingForNumbers(1));
+		System.out.println("[MERGESORT 2] Numbers: " + executeSortingForNumbers(1));
+		System.out.println("[QUICKSORT] Numbers: " + executeSortingForNumbers(2));
+		System.out.println("[HEAPSORT] Numbers: " + executeSortingForNumbers(3));
+		System.out.println("[DUAL-PIVOT QUICKSORT] Numbers: " + executeSortingForNumbers(4));
+
+		/*
+		 * Task 3: sortingType: 
+		 * 1 = Merge sort, 2 = Quick sort, 3 = Heap sort, 4 = Dual-Pivot Quick sort (Java 8), 5 = Radix sort
+		 */
+		System.out.println("[MERGESORT] Strings: Length = 4: " + executeSortingForStrings(1, 4));
+		System.out.println("[MERGESORT] Strings: Length = 6: " + executeSortingForStrings(1, 6));
+		System.out.println("[MERGESORT] Strings: Length = 8: " + executeSortingForStrings(1, 8));
+		System.out.println("[MERGESORT] Strings: Length = 10: " + executeSortingForStrings(1, 10));
+		System.out.println("[QUICKSORT] Strings: Length = 4: " + executeSortingForStrings(2, 4));
+		System.out.println("[QUICKSORT] Strings: Length = 6: " + executeSortingForStrings(2, 6));
+		System.out.println("[QUICKSORT] Strings: Length = 8: " + executeSortingForStrings(2, 8));
+		System.out.println("[QUICKSORT] Strings: Length = 10: " + executeSortingForStrings(2, 10));
+		System.out.println("[HEAPSORT] Strings: Length = 4: " + executeSortingForStrings(3, 4));
+		System.out.println("[HEAPSORT] Strings: Length = 6: " + executeSortingForStrings(3, 6));
+		System.out.println("[HEAPSORT] Strings: Length = 8: " + executeSortingForStrings(3, 8));
+		System.out.println("[HEAPSORT] Strings: Length = 10: " + executeSortingForStrings(3, 10));
+		System.out.println("[DUAL-PIVOT QUICKSORT] Strings: Length = 4: " + executeSortingForStrings(4, 4));
+		System.out.println("[DUAL-PIVOT QUICKSORT] Strings: Length = 6: " + executeSortingForStrings(4, 6));
+		System.out.println("[DUAL-PIVOT QUICKSORT] Strings: Length = 8: " + executeSortingForStrings(4, 8));
+		System.out.println("[DUAL-PIVOT QUICKSORT] Strings: Length = 10: " + executeSortingForStrings(4, 10));
+		System.out.println("[RADIXSORT] Strings: Length = 4: " + executeSortingForStrings(5, 4));
+		System.out.println("[RADIXSORT] Strings: Length = 6: " + executeSortingForStrings(5, 6));
+		System.out.println("[RADIXSORT] Strings: Length = 8: " + executeSortingForStrings(5, 8));
+		System.out.println("[RADIXSORT] Strings: Length = 10: " + executeSortingForStrings(5, 10));
 	}
 
-	private static long executeMergesort() {
-		long totalElapsedTime = 0;
+	private static long executeSortingForStrings(int sortingType, int stringSize) {
+		long totalElapsedTime = 0L;
+		
+		for (int i = 0; i < 10; i++) {
+			long startTime = 0L;
+			String[] stringsToSort = StringUtils.generateRandomStrings(stringSize, 100000);
+
+			switch (sortingType) {
+			case 1:
+				startTime = System.nanoTime();
+				Sort.mergeSort(stringsToSort);
+				break;
+			case 2:
+				startTime = System.nanoTime();
+				Sort.quicksort(stringsToSort);
+				break;
+			case 3:
+				startTime = System.nanoTime();
+				Sort.heapsort(stringsToSort);
+				break;
+			case 4:
+				startTime = System.nanoTime();
+				Arrays.sort(stringsToSort);
+				break;
+			case 5:
+				startTime = System.nanoTime();
+				RadixSort.radixSortA(stringsToSort, stringSize);
+				break;
+			default:
+				System.out.println("Invalid type.");
+				break;
+			}
+			
+			long elapsedTime = System.nanoTime() - startTime;
+			// System.out.println("Elapsed time: " + elapsedTime);
+			totalElapsedTime += elapsedTime;
+		}
+		return totalElapsedTime / 10;
+	}
+
+	private static long executeSortingForNumbers(int sortingType) {
+		long totalElapsedTime = 0L;
+		
 		for (int i = 0; i < 100; i++) {
+			long startTime = 0L;
 			Long[] numbersToSort = NumberUtils.generateUnboundedNumbers(100000);
-			long startTime = System.nanoTime();
-			Sort.mergeSort(numbersToSort);
+
+			switch (sortingType) {
+			case 1:
+				startTime = System.nanoTime();
+				Sort.mergeSort(numbersToSort);
+				break;
+			case 2:
+				startTime = System.nanoTime();
+				Sort.quicksort(numbersToSort);
+				break;
+			case 3:
+				startTime = System.nanoTime();
+				Sort.heapsort(numbersToSort);
+				break;
+			case 4:
+				startTime = System.nanoTime();
+				Arrays.sort(numbersToSort);
+				break;
+			default:
+				System.out.println("Invalid type.");
+				break;
+			}
+			
 			long elapsedTime = System.nanoTime() - startTime;
 			// System.out.println("Elapsed time: " + elapsedTime);
 			totalElapsedTime += elapsedTime;
