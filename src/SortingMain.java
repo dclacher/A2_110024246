@@ -1,6 +1,6 @@
 import java.util.Arrays;
-
-import sorting.*;
+import sorting.Sort;
+import sorting.RadixSort;
 
 public class SortingMain {
 
@@ -42,13 +42,22 @@ public class SortingMain {
 		System.out.println("[RADIXSORT] Strings: Length = 10: " + executeSortingForStrings(5, 10));
 	}
 
+	/**
+	 * This is the main method for task #3
+	 * @param sortingType
+	 * @return the average time spent for sorting, in nanoseconds
+	 */
 	private static long executeSortingForStrings(int sortingType, int stringSize) {
 		long totalElapsedTime = 0L;
 		
+		// Repeat 10 times
 		for (int i = 0; i < 10; i++) {
 			long startTime = 0L;
-			String[] stringsToSort = StringUtils.generateRandomStrings(stringSize, 100000);
+			
+			// Create 100,000 random strings of length <stringSize>
+			String[] stringsToSort = StringUtils.generateRandomAlphanumericStrings(stringSize, 100000);
 
+			// Sort the keys
 			switch (sortingType) {
 			case 1:
 				startTime = System.nanoTime();
@@ -76,19 +85,29 @@ public class SortingMain {
 			}
 			
 			long elapsedTime = System.nanoTime() - startTime;
-			// System.out.println("Elapsed time: " + elapsedTime);
+			//System.out.println("Elapsed time: " + elapsedTime);
 			totalElapsedTime += elapsedTime;
 		}
+		// Compute the average CPU time that takes to sort the keys
 		return totalElapsedTime / 10;
 	}
 
+	/**
+	 * This is the main method for task #2
+	 * @param sortingType
+	 * @return the average time spent for sorting, in nanoseconds
+	 */
 	private static long executeSortingForNumbers(int sortingType) {
 		long totalElapsedTime = 0L;
 		
+		// Repeat the sorting 100 times
 		for (int i = 0; i < 100; i++) {
 			long startTime = 0L;
+			
+			// Create 100,000 random keys (of type long)
 			Long[] numbersToSort = NumberUtils.generateUnboundedNumbers(100000);
 
+			// Sort the keys
 			switch (sortingType) {
 			case 1:
 				startTime = System.nanoTime();
@@ -112,48 +131,10 @@ public class SortingMain {
 			}
 			
 			long elapsedTime = System.nanoTime() - startTime;
-			// System.out.println("Elapsed time: " + elapsedTime);
+			//System.out.println("Elapsed time: " + elapsedTime);
 			totalElapsedTime += elapsedTime;
 		}
-		return totalElapsedTime / 100;
-	}
-
-	private static long executeQuicksort() {
-		long totalElapsedTime = 0;
-		for (int i = 0; i < 100; i++) {
-			Long[] numbersToSort = NumberUtils.generateUnboundedNumbers(100000);
-			long startTime = System.nanoTime();
-			Sort.quicksort(numbersToSort);
-			long elapsedTime = System.nanoTime() - startTime;
-			// System.out.println("Elapsed time: " + elapsedTime);
-			totalElapsedTime += elapsedTime;
-		}
-		return totalElapsedTime / 100;
-	}
-
-	private static long executeHeapsort() {
-		long totalElapsedTime = 0;
-		for (int i = 0; i < 100; i++) {
-			Long[] numbersToSort = NumberUtils.generateUnboundedNumbers(100000);
-			long startTime = System.nanoTime();
-			Sort.heapsort(numbersToSort);
-			long elapsedTime = System.nanoTime() - startTime;
-			// System.out.println("Elapsed time: " + elapsedTime);
-			totalElapsedTime += elapsedTime;
-		}
-		return totalElapsedTime / 100;
-	}
-
-	private static long executeDualPivotQuicksort() {
-		long totalElapsedTime = 0;
-		for (int i = 0; i < 100; i++) {
-			Long[] numbersToSort = NumberUtils.generateUnboundedNumbers(100000);
-			long startTime = System.nanoTime();
-			Arrays.sort(numbersToSort);
-			long elapsedTime = System.nanoTime() - startTime;
-			// System.out.println("Elapsed time: " + elapsedTime);
-			totalElapsedTime += elapsedTime;
-		}
+		// Compute the average CPU time taken to sort the keys
 		return totalElapsedTime / 100;
 	}
 }
