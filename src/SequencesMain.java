@@ -3,6 +3,7 @@ import algorithmDesign.Sequences;
 public class SequencesMain {
 
 	public static void main(String[] args) {
+		System.out.println("Ignore first execution! " + executeEditDistanceForStrings(10));
 		System.out.println("[EDIT DISTANCE] Length = 10: " + executeEditDistanceForStrings(10));
 		System.out.println("[EDIT DISTANCE] Length = 20: " + executeEditDistanceForStrings(20));
 		System.out.println("[EDIT DISTANCE] Length = 50: " + executeEditDistanceForStrings(50));

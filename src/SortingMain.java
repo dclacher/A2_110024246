@@ -10,8 +10,8 @@ public class SortingMain {
 		 * Task 2: sortingType: 
 		 * 1 = Merge sort, 2 = Quick sort, 3 = Heap sort, 4 = Dual-Pivot Quick sort (Java 8)
 		 */
-		System.out.println("[MERGESORT 1] Numbers: " + executeSortingForNumbers(1));
-		System.out.println("[MERGESORT 2] Numbers: " + executeSortingForNumbers(1));
+		System.out.println("Ignore first execution! " + executeSortingForNumbers(1));
+		System.out.println("[MERGESORT] Numbers: " + executeSortingForNumbers(1));
 		System.out.println("[QUICKSORT] Numbers: " + executeSortingForNumbers(2));
 		System.out.println("[HEAPSORT] Numbers: " + executeSortingForNumbers(3));
 		System.out.println("[DUAL-PIVOT QUICKSORT] Numbers: " + executeSortingForNumbers(4));
