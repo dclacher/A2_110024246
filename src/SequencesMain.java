@@ -8,13 +8,6 @@ public class SequencesMain {
 		System.out.println("[EDIT DISTANCE] Length = 20: " + executeEditDistanceForStrings(20));
 		System.out.println("[EDIT DISTANCE] Length = 50: " + executeEditDistanceForStrings(50));
 		System.out.println("[EDIT DISTANCE] Length = 100: " + executeEditDistanceForStrings(100));
-		/*
-		System.out.println("[EDIT DISTANCE] Length = 200: " + executeEditDistanceForStrings(200));
-		System.out.println("[EDIT DISTANCE] Length = 300: " + executeEditDistanceForStrings(300));
-		System.out.println("[EDIT DISTANCE] Length = 400: " + executeEditDistanceForStrings(400));
-		System.out.println("[EDIT DISTANCE] Length = 500: " + executeEditDistanceForStrings(500));
-		System.out.println("[EDIT DISTANCE] Length = 1000: " + executeEditDistanceForStrings(1000));
-		*/
 	}
 	
 	private static long executeEditDistanceForStrings(int wordSize) {
