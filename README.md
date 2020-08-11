@@ -1,2 +1,2 @@
-# acc-assignment-2
-Advanced Computing Concepts Lab 2 Assignment Repository.
+# sorting-algorithms-edit-distance-exercises
+Java exercises to evaluate sorting algorithms and compare strings using edit distance.
